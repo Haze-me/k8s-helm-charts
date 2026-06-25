@@ -22,10 +22,15 @@ spec:
           ports:
             - containerPort: 8000
           # Load ALL environment variables from the K8s Secret
-          # This keeps the Helm chart clean — no secrets are stored here
           envFrom:
             - secretRef:
                 name: {{ .Values.secretName }}
+          env:
+            # Inject the pod's own IP at runtime so Django can add it to ALLOWED_HOSTS
+            - name: POD_IP
+              valueFrom:
+                fieldRef:
+                  fieldPath: status.podIP
           resources:
             requests:
               memory: {{ .Values.resources.requests.memory }}

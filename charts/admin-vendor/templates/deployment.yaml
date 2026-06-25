@@ -1,0 +1,49 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Release.Name }}-admin-vendor
+  namespace: marketplace
+  labels:
+    app: admin-vendor
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: admin-vendor
+  template:
+    metadata:
+      labels:
+        app: admin-vendor
+    spec:
+      containers:
+        - name: admin-vendor
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          ports:
+            - containerPort: 8000
+          # Load ALL environment variables from the K8s Secret
+          # This keeps the Helm chart clean — no secrets are stored here
+          envFrom:
+            - secretRef:
+                name: {{ .Values.secretName }}
+          resources:
+            requests:
+              memory: {{ .Values.resources.requests.memory }}
+              cpu: {{ .Values.resources.requests.cpu }}
+            limits:
+              memory: {{ .Values.resources.limits.memory }}
+              cpu: {{ .Values.resources.limits.cpu }}
+          # Liveness probe — restarts pod if Django stops responding
+          livenessProbe:
+            httpGet:
+              path: /health/
+              port: 8000
+            initialDelaySeconds: 30
+            periodSeconds: 10
+          # Readiness probe — only send traffic when Django is ready
+          readinessProbe:
+            httpGet:
+              path: /health/
+              port: 8000
+            initialDelaySeconds: 15
+            periodSeconds: 5

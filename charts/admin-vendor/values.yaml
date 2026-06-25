@@ -1,0 +1,24 @@
+replicaCount: 1
+
+image:
+  repository: haze21/admin-vendor-service
+  pullPolicy: IfNotPresent
+  # CI updates this tag on every push to main
+  tag: "latest"
+
+service:
+  type: ClusterIP
+  port: 8000
+
+# Resource limits — tune based on actual usage
+resources:
+  requests:
+    memory: "256Mi"
+    cpu: "200m"
+  limits:
+    memory: "512Mi"
+    cpu: "500m"
+
+# Name of the K8s Secret that holds all env vars for this service
+# Created in Phase 8
+secretName: admin-vendor-secret

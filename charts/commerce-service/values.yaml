@@ -1,0 +1,20 @@
+replicaCount: 1
+
+image:
+  repository: haze21/commerce-service
+  pullPolicy: IfNotPresent
+  tag: "latest"
+
+service:
+  type: ClusterIP
+  port: 8082
+
+resources:
+  requests:
+    memory: "256Mi"
+    cpu: "200m"
+  limits:
+    memory: "512Mi"
+    cpu: "500m"
+
+secretName: commerce-service-secret

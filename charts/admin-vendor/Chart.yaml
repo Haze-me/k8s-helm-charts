@@ -1,0 +1,6 @@
+apiVersion: v2
+name: admin-vendor
+description: Django Admin/Vendor service for the marketplace
+type: application
+version: 0.1.0
+appVersion: "1.0.0"

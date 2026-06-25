@@ -1,0 +1,20 @@
+replicaCount: 1
+
+image:
+  repository: haze21/catalog-service
+  pullPolicy: IfNotPresent
+  tag: "latest"
+
+service:
+  type: ClusterIP
+  port: 8081
+
+resources:
+  requests:
+    memory: "256Mi"
+    cpu: "200m"
+  limits:
+    memory: "512Mi"
+    cpu: "500m"
+
+secretName: catalog-service-secret

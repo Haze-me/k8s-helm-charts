@@ -3,7 +3,7 @@ replicaCount: 1
 image:
   repository: haze21/catalog-service
   pullPolicy: IfNotPresent
-  tag: "latest"
+  tag: "dc0770e0"
 
 service:
   type: ClusterIP

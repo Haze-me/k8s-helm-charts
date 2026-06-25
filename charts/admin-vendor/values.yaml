@@ -4,7 +4,7 @@ image:
   repository: haze21/admin-vendor-service
   pullPolicy: IfNotPresent
   # CI updates this tag on every push to main
-  tag: "2f609284"
+  tag: "ff2cbbd4"
 
 service:
   type: ClusterIP

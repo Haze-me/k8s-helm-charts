@@ -3,7 +3,7 @@ replicaCount: 1
 image:
   repository: haze21/api-gateway
   pullPolicy: IfNotPresent
-  tag: "6f12cff9"
+  tag: "6b3c0a8e"
 
 service:
   type: ClusterIP

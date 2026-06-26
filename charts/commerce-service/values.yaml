@@ -3,7 +3,7 @@ replicaCount: 1
 image:
   repository: haze21/commerce-service
   pullPolicy: IfNotPresent
-  tag: "f3bbfb54"
+  tag: "f7139461"
 
 service:
   type: ClusterIP

@@ -3,7 +3,7 @@ replicaCount: 1
 image:
   repository: haze21/frontend-ui
   pullPolicy: IfNotPresent
-  tag: "c4a1cc3a"
+  tag: "e677fe2e"
 
 service:
   type: ClusterIP
